@@ -1,0 +1,27 @@
+
+
+name: Build and Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout of the repo
+      uses: actions/checkout@v4
+    - name: Use Node.js 14
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14.x
+        cache: 'npm'
+    - name: Install Dependancies
+      run: npm install
+    - name: Run Integratipn Tests
+      run: npm test
